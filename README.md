@@ -1,0 +1,1 @@
+This contains common use models and framework for NATS messaging integration between services.

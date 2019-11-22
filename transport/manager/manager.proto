@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+package msg.cyto.manager;
+
+message UpdatedCommandConfigurations {
+    google.protobuf.Timestamp timestamp = 1;
+    repeated CommandDefinition commandDefinitions = 2;
+}
+
+message CommandDefinition {
+    string commandID = 1;
+    bool enabled = 2;
+    repeated string triggers = 3;
+    enum PermissionLevel {
+        USER = 0;
+        MODERATOR = 1;
+        ADMIN = 2;
+        OWNER = 3;
+    }
+    PermissionLevel permissionLevel = 4;
+    repeated CommandParameterDefinition parameterDefinitions = 5;
+    string LastModifiedUserID = 6;
+    google.protobuf.Timestamp LastModifiedDateUtc = 7;
+}
+
+message CommandParameterDefinition {
+    string name = 1;
+    string pattern = 2;
+    string optional = 3;
+}

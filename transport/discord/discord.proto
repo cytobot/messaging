@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+package msg.cyto.discord;
+
+message HealthCheckStatus {
+    google.protobuf.Timestamp timestamp = 1;
+    string instanceID = 2;
+    int32 shardID = 3;
+    int64 uptime = 4;
+    int64 memAllocated = 5;
+    int64 memSystem = 6;
+    int64 memCumulative = 7;
+    int32 taskCount = 8;
+    int32 connectedServers = 9;
+    int32 connectedUsers = 10;
+}

@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+package msg.cyto.shared;
+
+message DiscordWorkRequest {
+    google.protobuf.Timestamp timestamp = 1;
+    string type = 2;
+    string command = 3;
+    string channelID = 4;
+    string guildID = 5;
+    string userID = 6;
+    string sourceID = 7;
+    map<string, string> payload = 8;
+}
