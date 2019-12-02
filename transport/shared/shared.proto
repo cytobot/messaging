@@ -13,4 +13,5 @@ message DiscordWorkRequest {
     string userID = 6;
     string sourceID = 7;
     map<string, string> payload = 8;
+    string messageID = 9;
 }
