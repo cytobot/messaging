@@ -16,3 +16,9 @@ message HealthCheckStatus {
     int32 connectedServers = 9;
     int32 connectedUsers = 10;
 }
+
+message DiscordInformationResponse {
+    google.protobuf.Timestamp timestamp = 1;
+    string instanceID = 2;
+    map<string, string> payload = 3;
+}

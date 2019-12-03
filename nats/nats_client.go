@@ -3,6 +3,7 @@ package cytonats
 import (
 	"encoding/json"
 	"fmt"
+	"time"
 
 	nats "github.com/nats-io/nats.go"
 )
@@ -42,6 +43,23 @@ func (c *NatsClient) Publish(subject string, msg interface{}) error {
 	}
 
 	return nil
+}
+
+//Request sends a message to subject subscriptions
+func (c *NatsClient) Request(subject string, msg interface{}) (*nats.Msg, error) {
+	bytes, err := json.Marshal(msg)
+
+	if err != nil {
+		return nil, fmt.Errorf("Failed to marshal Request payload: %s", err)
+	}
+
+	reqMsg, err := c.client.Request(subject, bytes, 5*time.Second)
+
+	if err != nil {
+		return nil, fmt.Errorf("Failed to send Request: %s", err)
+	}
+
+	return reqMsg, nil
 }
 
 //Subscribe to a nats subject with a callback
